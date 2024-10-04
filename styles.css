@@ -1,0 +1,89 @@
+/* Import Google Font */
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+</style>
+
+/* General Font for Entire Site */
+* {
+  font-family: 'Roboto', Arial, sans-serif; /* Apply consistent font to all elements */
+}
+
+/* Navbar and Title Banner */
+.navbar-dark, .quarto-title-banner {
+  background-color: #C1E899;
+  padding: 10px 15px;
+  font-family: 'Roboto', Arial, sans-serif; /* Ensure font consistency */
+  text-align: center
+}
+
+/* Body */
+body {
+  background-color: #f3f8ee;
+  line-height: 1.6;
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  text-align: justify;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #55883B; /* Ensure all headings are #55883B */
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Links */
+a {
+  color: #006600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-family: 'Roboto', Arial, sans-serif; /* Apply font to links */
+}
+
+a:hover {
+  color: #004d00;
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  background-color: #006600;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', Arial, sans-serif; /* Apply font to buttons */
+}
+
+button:hover {
+  background-color: #C1E899;
+}
+
+/* Footer */
+footer {
+  background-color: #C1E899;
+  color: #000000;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Roboto', Arial, sans-serif; /* Ensure font consistency */
+}
+
+/* Tables */
+table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-family: 'Roboto', Arial, sans-serif; /* Apply font to tables */
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+
