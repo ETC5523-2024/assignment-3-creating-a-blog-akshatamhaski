@@ -1,12 +1,196 @@
 ---
-title: "Welcome To My Blog Template"
-author: "Emi Tanaka"
-date: "2022-07-18"
+title: "Is Australia Ready to Harness Its Renewable Power?"
+author: "Akshata Mhaski"
+date: "2024-10-04"
 categories: [news]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+
+# What’s the Big Energy Challenge?
+
+Australia is often seen as a powerhouse for renewable energy, thanks to its vast natural resources—especially solar. However, the numbers paint a more complex picture. Despite the country's sunny climate, solar energy has struggled to reach its full potential, while biomass and hydro have surged ahead. So, what’s holding solar back, and how can Australia unlock this untapped resource?
+
+Let's have a closer look at Australia’s renewable energy landscape from 2010 to 2023, highlighting the fluctuations in both production and investment. With biomass and hydro leading the charge in 2023, solar energy remains underdeveloped, signaling major growth opportunities. .
+
+# Where’s the Data Coming From?
+ 
+For this analysis, I tapped into the Global Renewable Energy and Indicators Dataset on Kaggle (shoutout to all the data geeks out there!). It is a powerful resource that provides detailed data on renewable energy trends and factors across the globe. This dataset is packed with information that spans various energy sources, socio-economic indicators, and environmental factors, making it an excellent tool for in-depth analysis.
+
+Here are the key variables I used for my research:
+
+- Energy Type: The dataset covers multiple renewable energy sources, including solar, wind, hydro, and biomass. I specifically focused on the production of these energy types in Australia between 2010 and 2023.
+- Year: Timeframe of the data (2010-2023).
+- Production: For each energy type, production is measured in gigawatt-hours (GWh). To make comparisons over time easier, I converted these values into terawatt-hours (TWh).
+- Investments: The dataset provides insights into how much financial investment (in USD) was allocated to renewable energy in Australia each year during the study period.
+
+This dataset also contains a wealth of additional socio-economic and environmental data, such as GDP, population, CO2 emissions, and even local weather patterns. However, for this analysis, I focused primarily on production and investment data relevant to Australia’s renewable energy sector.
+
+I cleaned up the data to focus specifically on Australia and converted all those gigawatt-hours into terawatt-hours (TWh) because it just makes things easier to compare over time. Once the data was cleaned to ensure consistency, I was able to zero in on the big question: Is Australia’s renewable energy sector moving in the right direction, or do we need to rethink our strategies?
+
+
+# Digging into the Numbers: What the Data Shows
+
+Let’s dive into the numbers. When comparing renewable energy production between 2010-2019 and 2020-2023, there’s a clear dip in the recent years despite technological advancements and new projects. Here’s a summary of the average energy production by decade.
+
+Take a look at @tbl-prod below for a snapshot:
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Load necessary libraries
+
+library(tidyverse)
+library(janitor)
+library(knitr)
+library(kableExtra)
+library(here)
+
+# Load the dataset
+renewable_energy_data <- read_csv("data/complete_renewable_energy_dataset.csv") 
+
+# Clean the column names for consistency
+renewable_energy_data <- renewable_energy_data %>% clean_names()
+
+# Filter the data for relevant columns and summarize it by year
+summary_data <- renewable_energy_data %>%
+  group_by(year) %>%
+  filter(year >= 2010 & year <= 2023) %>% 
+  filter(country == "Australia") %>% 
+  summarize(total_investments = sum(investments_usd),total_production_gwh = sum(production_g_wh, na.rm = TRUE))
+
+production_2023 <- renewable_energy_data %>%
+  filter(year == 2023) %>%
+  group_by(energy_type) %>% 
+  summarize(total_production_gwh = sum(production_g_wh, na.rm = TRUE))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Create a decade column in the dataset
+summary_data <- summary_data %>%
+  mutate(decade = case_when(
+    year >= 2010 & year <= 2019 ~ "2010-2019",
+    year >= 2020 & year <= 2023 ~ "2020-2023"
+  ))
+
+# Summarize data by decade and calculate the average production
+decade_data <- summary_data %>%
+  group_by(decade) %>%
+  summarize(avg_production_twh = round(mean(total_production_gwh / 1e3), 2))  # Convert GWh to TWh
+```
+
+
+```{r echo=FALSE,message=FALSE, warning=FALSE}
+#| label: tbl-prod
+#| tbl-cap: Average Energy Production from Renewable Sources by Decade
+# Display the table with average production by decade
+kable(decade_data, col.names = c("Decade", "Average Energy Production (TWh)"),
+      align = "c")
+```
+
+
+Now, let's talk money. Investment in renewable energy has been all over the place. One year, things are booming, and the next year, there’s a sharp decline. @fig-inv below shows the rollercoaster ride that investment trends have been on from 2010 to 2023. While there was a recovery in 2023, it’s clear we need a more stable, long-term commitment to keep the sector growing.
+
+
+
+```{r warning=FALSE,message=FALSE,echo=FALSE,fig.align='center',fig.pos='H'}
+#| label: fig-inv
+#| fig-cap: Bar chart showing the total investments in (Billion USD) made in renewable energy from 2010 to 2023.
+library(scales)
+
+ggplot(summary_data, aes(x = year, y = total_investments / 1e9)) +
+  geom_col(fill = "#C1E899", color = "#55883B") +  # Bar chart
+  geom_text(aes(label = round(total_investments / 1e9, 1)), 
+            vjust = -0.5, color = "black", size = 3.0, fontface = "bold") +  # Labels above bars
+  labs(
+    title = "Total Investments in Renewable Energy (2010-2023)",
+    x = "Year",
+    y = "Investments (Billion USD)"
+  ) +
+  scale_y_continuous(breaks = pretty_breaks(n = 5)) + 
+  scale_x_continuous(breaks = pretty_breaks(n = 6))+
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    axis.title = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 12, color = "gray40"),
+    panel.grid.major = element_blank(),  # Remove major grid lines
+    panel.grid.minor = element_blank(), 
+    plot.margin = unit(c(1, 1, 1.5, 1), "cm")
+  )
+
+
+```
+
+
+# The most surprising part
+
+```{r warning=FALSE,message=FALSE,echo=FALSE,eval = FALSE,fig.align='center',fig.pos='H'}
+library(treemap)
+
+# Ensure the total_production_gwh column is numeric
+production_2023$total_production_gwh <- as.numeric(production_2023$total_production_gwh)
+
+# Convert GWh to TWh for the label
+production_2023$total_production_twh <- production_2023$total_production_gwh / 1000
+
+# Create a label that combines the energy type and the production in TWh
+production_2023$label <- paste(production_2023$energy_type, "\n", round(production_2023$total_production_twh, 1), "TWh")
+
+# Create the treemap
+treemap(production_2023,
+        index = "label",                        # Use the combined label for the index
+        vSize = "total_production_gwh",         # The size of the tiles (GWh production)
+        vColor = "total_production_gwh",        # Color based on production
+        type = "value",                         # Type of coloring
+        title = "Renewable Energy Production by Type in 2023",
+        palette = "Pastel2",                     # Green color palette
+        border.col = "white",                   # White borders between tiles
+        fontsize.labels = 12,                   # Font size for labels
+        align.labels = list(c("center", "center")),  # Align labels in the center
+        fontcolor.labels = "white"              # Color of the labels
+)
+
+
+```
+
+
+```{r warning=FALSE,message=FALSE,echo=FALSE}
+# Assuming your production_2023 dataset is already available
+# Converting production from GWh to TWh
+production_2023$total_production_twh <- production_2023$total_production_gwh / 1000
+
+# Sorting the table in descending order of total production (TWh)
+production_2023_sorted <- production_2023[order(-production_2023$total_production_twh), ]
+```
+
+```{r warning=FALSE,message=FALSE,echo=FALSE}
+#| label: tbl-type
+#| tbl-cap: Table showing the production of different types of renewable energy in 2023, sorted by total production.
+
+kable(production_2023_sorted[, c("energy_type", "total_production_twh")],
+      col.names = c("Energy Type", "Total Production (TWh)"),align = "c")
+
+```
+
+
+As you can see in @tbl-type, biomass and hydro were the big winners, producing over 1,000 TWh each, in 2023. Meanwhile, solar energy—a source we should be maximizing—was way behind. This signals a huge opportunity for growth in solar, which is kind of crazy considering Australia is known for its sunshine.
+
+# What’s the Takeaway?
+
+Australia’s renewable energy sector needs a bit of a boost if we want to keep up with global trends. Right now, solar energy is vastly underdeveloped, which is a huge missed opportunity. To really get things moving, we need more stable investments and stronger policies that support innovation in the renewable space. By diversifying energy sources and focusing on solar, Australia can take the lead in the global market.
+
+# Where Do We Go from Here?
+
+Aligning policies with global climate goals, pushing for more solar energy investment, and making sure the support is there for the long haul. With these changes, Australia could build a stronger, more resilient renewable energy sector and make a big impact on the world stage. Investments in renewable energy are critical for ensuring long-term sustainability. Diversifying financing methods is key to accelerating clean energy transitions, which is especially relevant for Australia's efforts in expanding its solar and wind energy sectors (Dong et al., 2019)
+
+
+# References:
+
+- Vijay, A. (2022). Global Renewable Energy and Indicators Dataset [Data Set]. Kaggle.
+- Dong, X., Sun, T., Fang, Y., Wu, H., & Li, H. (2019). Renewable energy investments and financing methods: A guide to clean energy transitions. Journal of Cleaner Production, 236, 117632. https://doi.org/10.1016/j.jclepro.2019.117632
+- Ritchie, H., Rosado, P., & Roser, M. (2024). Renewable Energy. Our World in Data.
+
 
 ![](thumbnail.jpg)
+
+
 
 

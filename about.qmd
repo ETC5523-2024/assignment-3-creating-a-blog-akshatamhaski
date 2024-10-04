@@ -2,12 +2,32 @@
 title: "About"
 image: profile.jpg
 about:
-  template: jolla
+  template: broadside
   links:
     - icon: github
       text: Github
-      href: https://github.com/etc5523-2022
+      href: https://github.com/akshatamhaski
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/akshata-mhaski-216a85169/
 
 ---
 
-This is a blog template for the ETC5523 Communicating with Data assessment at Monash University.
+Hey there! I’m Akshata, a Master’s student in Business Analytics at Monash University, and I’m all about using data to crack complex problems and make an impact. I’m super passionate about finding creative ways to apply data science across different industries.
+
+Here’s what gets me excited:
+
+Crunching numbers with business analytics
+Making data visualizations that tell a story
+And of course, sustainability in business (because who doesn’t love saving the planet while crunching data?)
+
+I love rolling up my sleeves and digging into real-world projects that bring out insights and help drive innovation. If you’ve got a cool project or question where data can make a difference, let’s chat!
+
+Feel free to reach out:
+
+Akshata Dinkar Mhaski
+
+akshatamhaski2000@gmail.com
+
+Monash University, Melbourne, Australia
+
