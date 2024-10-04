@@ -6,31 +6,31 @@
 /* General Font for Entire Site */
 * {
   font-family: 'Roboto', Arial, sans-serif; /* Apply consistent font to all elements */
-  color: #000000; /* Default text color */
 }
 
 /* Navbar and Title Banner */
 .navbar-dark, .quarto-title-banner {
   background-color: #C1E899;
-  color: #000000;
   padding: 10px 15px;
   font-family: 'Roboto', Arial, sans-serif; /* Ensure font consistency */
+  text-align: center
 }
 
 /* Body */
 body {
   background-color: #f3f8ee;
   line-height: 1.6;
-  font-family: 'Roboto', Arial, sans-serif; /* Apply font explicitly */
+  font-family: 'Roboto', Arial, sans-serif;
   margin: 0;
+  text-align: justify;
 }
 
 /* Headings */
-h1, h2, h3 {
-  color: #55883B;
+h1, h2, h3, h4, h5, h6 {
+  color: #55883B; /* Ensure all headings are #55883B */
   margin-bottom: 15px;
   font-weight: 700;
-  font-family: 'Roboto', Arial, sans-serif; /* Ensure font consistency for headings */
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
 /* Links */
@@ -86,16 +86,4 @@ th, td {
   border: 1px solid #ddd;
 }
 
-/* Bullet Points Styling */
-ul, ol {
-  font-family: 'Roboto', Arial, sans-serif; /* Consistent font for lists */
-  margin-left: 20px;
-  color: #000000;
-}
-
-/* Image Styling */
-img {
-  width: auto;
-  height: 300px;
-}
 
