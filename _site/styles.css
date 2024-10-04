@@ -1,26 +1,36 @@
-/* CSS Styles */
+/* Import Google Font */
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+</style>
+
+/* General Font for Entire Site */
+* {
+  font-family: 'Roboto', Arial, sans-serif; /* Apply consistent font to all elements */
+  color: #000000; /* Default text color */
+}
 
 /* Navbar and Title Banner */
 .navbar-dark, .quarto-title-banner {
   background-color: #C1E899;
   color: #000000;
-  font-family: 'Helvetica Neue', serif;
   padding: 10px 15px;
+  font-family: 'Roboto', Arial, sans-serif; /* Ensure font consistency */
 }
 
 /* Body */
 body {
   background-color: #f3f8ee;
-  color: #000000;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
+  font-family: 'Roboto', Arial, sans-serif; /* Apply font explicitly */
+  margin: 0;
 }
 
 /* Headings */
 h1, h2, h3 {
   color: #55883B;
-  font-family: 'Helvetica Neue', serif;
   margin-bottom: 15px;
+  font-weight: 700;
+  font-family: 'Roboto', Arial, sans-serif; /* Ensure font consistency for headings */
 }
 
 /* Links */
@@ -28,42 +38,46 @@ a {
   color: #006600;
   text-decoration: none;
   transition: color 0.3s ease;
+  font-family: 'Roboto', Arial, sans-serif; /* Apply font to links */
 }
 
-/* Hover Effect for Links */
 a:hover {
-  color: #006600;
+  color: #004d00;
   text-decoration: underline;
 }
 
 /* Buttons */
 button {
   background-color: #006600;
-  color: #000000;
+  color: #ffffff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Roboto', Arial, sans-serif; /* Apply font to buttons */
 }
 
 button:hover {
-  background-color: #C1E899 ;
+  background-color: #C1E899;
 }
 
 /* Footer */
 footer {
   background-color: #C1E899;
-  color: #FFFFFF;
+  color: #000000;
   padding: 15px;
   text-align: center;
   font-size: 14px;
+  font-family: 'Roboto', Arial, sans-serif; /* Ensure font consistency */
 }
 
+/* Tables */
 table {
   width: 80%;
   margin: 0 auto;
   border-collapse: collapse;
+  font-family: 'Roboto', Arial, sans-serif; /* Apply font to tables */
 }
 
 th, td {
@@ -72,5 +86,16 @@ th, td {
   border: 1px solid #ddd;
 }
 
-<img src="thumbnail.jpg" alt="Thumbnail" style="width:auto;height:300px;">
+/* Bullet Points Styling */
+ul, ol {
+  font-family: 'Roboto', Arial, sans-serif; /* Consistent font for lists */
+  margin-left: 20px;
+  color: #000000;
+}
+
+/* Image Styling */
+img {
+  width: auto;
+  height: 300px;
+}
 

@@ -10,7 +10,7 @@ website:
         href: https://github.com/akshatamhaski
 format:
   html:
-    theme: litera
+    theme: cosmo
     css: styles.css
 
 
