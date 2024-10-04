@@ -165,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Investments: The dataset provides insights into how much financial investment (in USD) was allocated to renewable energy in Australia each year during the study period.</p></li>
 </ol>
 <p>This dataset also contains a wealth of additional socio-economic and environmental data, such as GDP, population, CO2 emissions, and even local weather patterns. However, for this analysis, I focused primarily on production and investment data relevant to Australia’s renewable energy sector.</p>
-<p>I cleaned up the data to focus specifically on Australia and converted all those gigawatt-hours into terawatt-hours (TWh) because it just makes things easier to compare over time. Once the data was cleaned to ensure consistency, I was able to zero in on the big question: Is Australia’s renewable energy sector moving in the right direction, or do we need to rethink our strategies?</p>
+<p>I cleaned up the data to focus exclusively on Australia, making it easier to track trends over time. First, I converted all energy production values from gigawatt-hours (GWh) to terawatt-hours (TWh) for simpler comparisons. Next, I aggregated production data by year and energy type to calculate annual totals. To make long-term patterns clearer, I averaged the total production figures by decade—covering 2010-2019 and 2020-2023. Similarly, I organized data on renewable energy investments by year, converting the original values from USD to billions of dollars. With these adjustments, the data became much easier to interpret, allowing me to focus on the big question: Is Australia’s renewable energy sector moving in the right direction, or is it time to rethink our strategies?</p>
 </section>
 <section id="digging-into-the-numbers-what-the-data-shows" class="level1">
 <h1>Digging into the Numbers: What the Data Shows</h1>
@@ -205,7 +205,7 @@ Table&nbsp;1: Average Energy Production from Renewable Sources by Decade
 <p>Now, let’s talk money. Investment in renewable energy has been all over the place. One year, things are booming, and the next year, there’s a sharp decline. <a href="#fig-inv" class="quarto-xref">Figure&nbsp;1</a> below shows the rollercoaster ride that investment trends have been on from 2010 to 2023. While there was a recovery in 2023, it’s clear we need a more stable, long-term commitment to keep the sector growing.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-inv" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H" data-fig-align="center">
+<div id="fig-inv" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-inv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-inv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H" width="672">
@@ -367,7 +367,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/ETC5523-2024\.github\.io\/assignment-3-creating-a-blog-akshatamhaski\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
